@@ -1,0 +1,87 @@
+<header class="bg-dark text-light py-4">
+    <div class="container">
+        <h1 class="mb-0">Inventory</h1>
+    </div>
+</header>
+ <app-navbar></app-navbar>
+
+   <div class=" row">
+    <div class="card mt-5 col-9">
+        <div class="card-header text-center">
+          <h2>Inventory Management</h2>
+        </div>
+        <div class="card-body">
+          <form [formGroup]="inventoryForm" (ngSubmit)="addInventory()">
+            <div class="mb-3">
+              <label for="productName" class="form-label">Product Name:</label>
+              <input type="text" id="productName" formControlName="productName" class="form-control">
+              <div *ngIf="inventoryForm.get('productName')?.invalid && inventoryForm.get('productName')?.touched" class="text-danger">
+                Product Name is required
+              </div>
+            </div>
+            
+            <div class="mb-3">
+              <label for="vendor" class="form-label">Vendor:</label>
+              <input type="text" id="vendor" formControlName="vendor" class="form-control">
+              <div *ngIf="inventoryForm.get('vendor')?.invalid && inventoryForm.get('vendor')?.touched" class="text-danger">
+                Vendor is required
+              </div>
+            </div>
+            
+            <div class="mb-3">
+              <label for="mrp" class="form-label">MRP:</label>
+              <input type="number" id="mrp" formControlName="mrp" class="form-control">
+              <div *ngIf="inventoryForm.get('mrp')?.invalid && inventoryForm.get('mrp')?.touched" class="text-danger">
+                MRP is required and must be a positive number
+              </div>
+            </div>
+            
+            <div class="mb-3">
+              <label for="batchNum" class="form-label">Batch Number:</label>
+              <input type="text" id="batchNum" formControlName="batchNum" class="form-control">
+              <div *ngIf="inventoryForm.get('batchNum')?.invalid && inventoryForm.get('batchNum')?.touched" class="text-danger">
+                Batch Number is required
+              </div>
+            </div>
+            
+            <div class="mb-3">
+              <label for="batchDate" class="form-label">Batch Date:</label>
+              <input type="date" id="batchDate" formControlName="batchDate" class="form-control">
+              <div *ngIf="inventoryForm.get('batchDate')?.invalid && inventoryForm.get('batchDate')?.touched" class="text-danger">
+                Batch Date is required
+              </div>
+            </div>
+            
+            <div class="mb-3">
+              <label for="quantity" class="form-label">Quantity:</label>
+              <input type="number" id="quantity" formControlName="quantity" class="form-control">
+              <div *ngIf="inventoryForm.get('quantity')?.invalid && inventoryForm.get('quantity')?.touched" class="text-danger">
+                Quantity is required and must be a positive number
+              </div>
+            </div>
+            
+           
+            
+            <button type="submit" class="btn btn-primary w-100" [disabled]="inventoryForm.invalid">Add Inventory</button>
+          </form>
+        </div>
+      </div>
+      
+      <div class="card mt-5 col-3">
+        <div class="card-header text-center">
+          <h2>Inventory List</h2>
+        </div>
+        <div class="card-body">
+          <ul class="list-group">
+            <li class="list-group-item" *ngFor="let item of inventoryItems">
+              {{ item.productId }} - {{ item.productName }} - {{ item.status }}
+            </li>
+          </ul>
+        </div>
+      </div>
+    
+   </div>
+   <div class="footer">
+    <app-footer></app-footer>
+
+</div>

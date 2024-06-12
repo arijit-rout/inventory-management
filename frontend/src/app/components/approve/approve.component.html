@@ -1,0 +1,42 @@
+<header class="bg-dark text-light py-4">
+    <div class="container">
+        <h1 class="mb-0">Approve Inventory</h1>
+    </div>
+</header>
+<app-navbar></app-navbar>
+<main class="container py-4">
+    <ng-container *ngIf="this.pendingItems.length else elseTemplate">
+        <section id="approveInventory">
+            <h2>Pending Inventory Items</h2>
+            <div id="pendingInventory">
+                <!-- Pending inventory items will be displayed here -->
+                 <ng-container *ngFor="let item of pendingItems">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Product Name: {{item.productName}}</h5>
+                            <p class="card-text">Product ID: {{item.productId}}</p>
+                            <p class="card-text">Vendor: {{item.vendor}}</p>
+                            <p class="card-text">Quantity: {{item.quantity}}</p>
+                            <p class="card-text">MRP: {{item.mrp}}</p>
+                            <p class="card-text">Status: {{item.status}}</p>
+                            <button class="btn btn-success" (click)="approveItem(item.productId)">Approve</button>
+                        </div>
+                    </div>
+                 </ng-container>
+                 
+                
+                <!-- Add more pending inventory items here -->
+            </div>
+            <button id="approveAll" class="btn btn-primary mt-3">Approve All</button>
+        </section>
+    </ng-container>
+    <ng-template #elseTemplate>
+        <h3>No pending items</h3>
+    </ng-template>
+    
+    
+</main>
+<div class="footer">
+    <app-footer></app-footer>
+
+</div>

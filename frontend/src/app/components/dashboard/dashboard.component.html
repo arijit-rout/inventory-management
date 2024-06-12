@@ -1,0 +1,37 @@
+<div >
+    <header class="bg-dark text-light py-4">
+        <div class="container">
+            <h1 class="mb-0">Inventory Management Dashboard</h1>
+        </div>
+    </header>
+ <app-navbar></app-navbar>
+    <main class="container py-4">
+      
+        <section id="viewInventory">
+            <h2>View Inventory</h2>
+            <div class="card mt-5">
+                <div class="card-header text-center">
+                  <h2>Inventory List</h2>
+                </div>
+                <div class="card-body">
+                  <ul class="list-group">
+                    <li class="list-group-item" *ngFor="let item of inventoryItems">
+                      {{ item.productId }} - {{ item.productName }} - {{ item.status }}
+                    </li>
+                  </ul>
+                </div>
+              </div>
+        </section>
+        <section id="approveInventory" *ngIf="ifStoreManager()">
+            <h2>Approve Inventory</h2>
+            <div id="pendingInventory">
+                <!-- Pending inventory items will be displayed here -->
+            </div>
+            <button id="approveAll" class="btn btn-success">Approve All</button>
+        </section>
+    </main>
+    <div class="footer">
+        <app-footer></app-footer>
+    
+    </div>
+</div>

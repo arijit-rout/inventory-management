@@ -1,0 +1,39 @@
+{
+    "users": [
+      {
+        "username": "dept_manager",
+        "password": "password",
+        "email": "departmentmanager@gmail.com",
+        "roles": ["department-manager"]
+      },
+      {
+        "username": "store_manager",
+        "password": "password",
+        "email": "storemanager@gmail.com",
+        "roles": ["store-manager"]
+      }
+    ],
+    "inventory": [
+      {
+        "productId": "P001",
+        "productName": "Product 1",
+        "vendor": "Vendor A",
+        "mrp": 100,
+        "batchNum": "B001",
+        "batchDate": "2023-01-01",
+        "quantity": 50,
+        "status": "Pending"
+      },
+      {
+        "productId": "P002",
+        "productName": "Product 2",
+        "vendor": "Vendor B",
+        "mrp": 150,
+        "batchNum": "B002",
+        "batchDate": "2023-02-01",
+        "quantity": 30,
+        "status": "Approved"
+      }
+    ]
+  }
+  
