@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import { InventoryService } from 'src/app/services/inventory.services';
 
 @Component({
@@ -10,7 +11,7 @@ export class DashboardComponent {
   inventoryItems:any = [];
   user:any;
 userInfo:any;
-constructor(private inventoryService: InventoryService) {
+constructor(private inventoryService: InventoryService,private toastr:ToastrService) {
 
 }
   ngOnInit() {
@@ -33,5 +34,13 @@ constructor(private inventoryService: InventoryService) {
   }
   ifStoreManager(){
     return this.userInfo.roles.includes('store-manager')?true:false;
+  }
+  approveAll(){
+    this.inventoryItems.forEach((element:any) => {
+      element.status="Approved";
+    });
+    this.inventoryService.setItems(this.inventoryItems);
+  
+    this.toastr.success('Approved all')
   }
 }

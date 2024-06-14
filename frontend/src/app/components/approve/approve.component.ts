@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { InventoryService } from 'src/app/services/inventory.services';
 import { LoginComponent } from '../login/login.component';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-approve',
@@ -8,7 +9,7 @@ import { LoginComponent } from '../login/login.component';
   styleUrls: ['./approve.component.css']
 })
 export class ApproveComponent {
-  constructor(private inventoryService: InventoryService){}
+  constructor(private inventoryService: InventoryService,private toastr:ToastrService){}
   user:any;
   userInfo:any;
   inventoryItems:any=[];
@@ -47,6 +48,12 @@ approveItem(id:any){
 
 }
 approveAll(){
-  
+  this.inventoryItems.forEach((element:any) => {
+    element.status="Approved";
+  });
+  this.inventoryService.setItems(this.inventoryItems);
+  this.pendingItems=this.inventoryItems.filter((x:any)=>x.status.toLowerCase()=="pending");
+
+  this.toastr.success('Approved all')
 }
 }

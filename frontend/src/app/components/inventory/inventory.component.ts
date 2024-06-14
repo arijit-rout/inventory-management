@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { InventoryService } from 'src/app/services/inventory.services';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { v4 as uuidv4 } from 'uuid';
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-inventory',
   templateUrl: './inventory.component.html'
@@ -9,7 +10,7 @@ import { v4 as uuidv4 } from 'uuid';
 export class InventoryComponent implements OnInit {
   inventoryItems:any = [];
   inventoryForm: FormGroup;
-  constructor(private inventoryService: InventoryService,private fb: FormBuilder) {
+  constructor(private inventoryService: InventoryService,private fb: FormBuilder,private toastr:ToastrService) {
     this.inventoryForm = this.fb.group({
       productId: [''],
       productName: ['', Validators.required],
@@ -60,6 +61,7 @@ newItem:any
           
           this.inventoryItems.push(response.inventory);
           this.inventoryService.setItems(this.inventoryItems);
+          this.toastr.success("Item added successfully")
         }
       });
     }
