@@ -46,4 +46,7 @@ approveItem(id:any){
   this.pendingItems=this.inventoryItems.filter((x:any)=>x.status.toLowerCase()=="pending");
 
 }
+approveAll(){
+  
+}
 }

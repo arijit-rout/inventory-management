@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { RouteReuseStrategy } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -6,7 +9,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent {
+constructor(private toastr:ToastrService,private router:Router){
 
+}
   user:any;
   userInfo:any;
   ngOnInit(): void {
@@ -16,7 +21,7 @@ export class NavbarComponent {
   }
 
   ifStoreManager(){
-    return this.userInfo.roles.includes('store-manager')?true:false;
+    return this.userInfo?.roles.includes('store-manager')?true:false;
   }
   dropDownToggle=false;
   onClickProfile(){
@@ -24,6 +29,11 @@ this.dropDownToggle=!this.dropDownToggle;
   }
   logout(){
     localStorage.removeItem('user');
-    window.location.reload()
+    this.toastr.success('Logged out successfully');
+    setTimeout(() => {
+    this.router.navigate(['/login']);
+      
+    }, 1000);
+    // window.location.reload()
   }
 }
