@@ -42,7 +42,7 @@ approveItem(id:any){
     
     item.status = 'Approved';
   } 
-  localStorage.setItem('inventoryItems',JSON.stringify(this.inventoryItems));
+  this.inventoryService.setItems(this.inventoryItems);
   this.pendingItems=this.inventoryItems.filter((x:any)=>x.status.toLowerCase()=="pending");
 
 }

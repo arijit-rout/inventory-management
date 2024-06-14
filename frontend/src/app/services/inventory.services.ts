@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, map } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +10,7 @@ export class InventoryService {
   private apiUrl = 'assets/data.json';
 
   constructor(private http: HttpClient) { }
-
+   inventoryItems = new BehaviorSubject<any>([]);
   login(credentials: any): Observable<any> {
     return new Observable(observer => {
       this.http.get(this.apiUrl).subscribe((data: any) => {
@@ -57,6 +58,10 @@ export class InventoryService {
         observer.complete();
       });
     });
+  };
+
+  setItems(items:any){
+    localStorage.setItem('inventoryItems',JSON.stringify(items));
   }
 
   

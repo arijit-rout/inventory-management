@@ -17,16 +17,15 @@ constructor(private inventoryService: InventoryService) {
     this.user=localStorage.getItem('user')  ;
     this.userInfo=JSON.parse(this.user)
     console.log(this.userInfo);
+    let items=localStorage.getItem('inventoryItems');
     
-    if(localStorage.getItem('inventoryItems')){
-      let items=localStorage.getItem('inventoryItems');
-      if(items){
+    if(items){
+      
         this.inventoryItems= JSON.parse(items)
-      }
     }else{
       this.inventoryService.getInventory().subscribe(items => {
         this.inventoryItems = items;
-        localStorage.setItem('inventoryItems',JSON.stringify(this.inventoryItems));
+        this.inventoryService.setItems(this.inventoryItems);
       });
     }
     

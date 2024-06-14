@@ -59,7 +59,7 @@ newItem:any
           console.log(response);
           
           this.inventoryItems.push(response.inventory);
-          localStorage.setItem('inventoryItems',JSON.stringify(this.inventoryItems));
+          this.inventoryService.setItems(this.inventoryItems);
         }
       });
     }
